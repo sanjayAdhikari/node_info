@@ -1,0 +1,141 @@
+Async Programming:
+===================
+
+Synchronous Programming:
+-------------------------
+
+    * In traditional programming practice, most I/O operations happen synchronously.
+    * If you think about Java, and about how you would read a file using Java
+    * The main thread is blocked till the file is read, which means nothing can be done at that time.
+    * To solve and utilize your CPU better, we need 2 handle threads manually.
+    * To solve this, Node.js introduced Async programming.
+
+
+    Async Programming in Node.js:
+    =============================
+
+
+    * File reading example in both Synchronous and Async way.
+
+    Exmaple:
+    ========
+
+        const fs = require('fs');
+        let content;
+        try{
+            content = fs.readFileSync('file.md','utf-8');
+        }catch(ex){
+            console.log(ex);
+        }
+        console.log(content);
+
+
+    * Async programming is achieved only using functions as first-class.
+    * They can be passed around as variables to other functions.
+    * Function that takes other functions as arguments are called 'higher-order' functions.
+
+    Example:-
+    --------
+    const numbers = [2,4,1,5,4]
+
+    function isBiggerThanTwo (num) {
+    return num > 2
+    }
+
+    numbers.filter(isBiggerThanTwo)
+
+    Async way 2 read a file:
+    ----------------------
+
+        const fs = require('fs');
+        fs.readFile('file.md','utf-8',(err,result)=>{
+            if(err){return console.log(err);}
+            console.log(result);
+        });
+
+        Things to notice are:
+        ====================
+
+            * no-error handling
+            * no return value.
+
+            const fs = require('fs')
+            console.log('start reading a file...');
+
+            fs.readFile('file.md', 'utf-8', function (err, content) {
+                if (err) {
+                    console.log('error happened during reading the file')
+                    return console.log(err)
+                }
+                console.log(content)
+            });
+
+            console.log('end of the file');
+
+
+        Callbacks:
+        =========
+
+        * If you pass a function to another function as a parameter, you can call it within the function when you are finished with your job.
+
+        * These so-called "error-first callbacks" are in the heart of Node.js itself
+
+        Advantages:
+        ==============
+    
+        * error-handling instead of a try/catch block.
+        * no return value, async functions don't return any value,but values are passed 2 callbacks.
+
+
+        Event Loop:
+        ============
+
+            * event-loop is the heart of Node.js/Javascript
+
+        Event driven programming:
+        =======================
+
+        * Flow of the program is determined by events such as user actions (mouse clicks, key presses), sensor outputs, or messages from other programs/threads.
+
+        Async control-flow:
+        ===================
+
+        * To avoid callback-hell,we use on thing that to start using async.js.
+
+        * Async.js helps to structure your applications and makes control flow easier.
+
+        async.parallel(['file1', 'file2', 'file3'], fs.stat, function (err, results) {
+                // results is now an array of stats for each file
+        });
+
+
+        Promises:
+        =========
+
+        * The Promise object is used for deferred and asynchronous computations. A Promise represents an operation that hasn't completed yet but is expected in the future.
+
+
+        function stats(file){
+            return new Promise((resolve,reject)=>{
+                fs.stat(file,'utf-8',(err,data)=>{
+                        if(err){
+                        return reject(err);
+                    }
+                    resolve(data);
+                });
+            });
+        }
+
+
+    Promise.all([
+        stats('file1'),
+        stats('file2'),
+        stats('file3');
+    ]).then((data)=>{
+        console.log(data);
+    }).catch((err)=>{
+        console.log(err);
+    });
+
+
+

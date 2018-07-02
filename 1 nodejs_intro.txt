@@ -1,0 +1,39 @@
+What is Node.js:
+===============
+
+  * Node.js is an open source framework.
+  * It is a cross-platform JS runtime environment built on Chrome's v8 Engine.
+  * It is used to develop server side and networking applications.
+  * It uses a event-driven, non-blocking I/O model that makes it lightweight and efficient.
+  * It uses libUV, a multi-platform support libraray for async IO.
+
+
+    ----------------------
+    Write servers using JS
+    -----------------------
+
+   From Dev's point-of-view, Node.js is single threaded.
+
+   But under the hood, libUV handles all the threading,file system events, implements the event loop, thread pooling.
+
+
+   Why use Node.js:
+   ================
+
+    * Node.js enables dev's to use JS on both front and backend.
+    * Perfect tool for developing high "throughput" server-side applications.
+    * Scales flawlessly, thereby reducing infrastructure costs.
+    * Open source technology has dynamic tools and modules(npm).
+
+
+    Installing Node.js:
+    ===================
+
+    Either from offical website or using "nvm"
+
+    It comes really handy when you want to deploy your application to a PaaS provider - they can recognize it and start your application using that.
+
+    node --version
+    nvm install 8.9.1
+    nvm use 8.9.1
+    nvm uninstall 8.9.1

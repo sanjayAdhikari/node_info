@@ -1,0 +1,60 @@
+What is NPM:
+============
+
+
+npm in a nutshell:
+=================
+
+  * npm is a pacakage manager for node.js apps.
+  * similar to 'mavem' for Java and "composer" for PHP applications.
+  * There are two primary interfaces you will interact with - the NPM website and the NPM command line toolkit.
+  * npm comes bundled with Node.js, so no need to install it separately.
+
+
+  npm website:
+  =============
+
+    https://npmjs.com/
+
+  CLI:
+  ===
+
+  npm
+
+
+  Adding Dependencies:
+  ===================
+
+
+  * Add runtime dependencies to your application.
+  * npm install lodash --save
+  * The module gets saved in package.json
+  * lodash is installed and placed in node_modules folder.
+  * No need to add package.json in Version control,if you are using git make sure to add it to the .gitignore file.
+
+    dependencies:{
+    'lodash': '8.9.1'
+    }
+
+
+    Adding development dependencies:
+    ===============================
+
+      * npm install mocha --save-dev
+      * Once you do that, a new section will appear in your package.json file called devDependencies.
+
+
+     npm cripts:
+     ===========
+
+     * npm scripts is a very powerful concept.
+     * With the help of them you can build small utilities or even compose complex build systems.
+     * the most common are start and test.
+     * "start" helps you to describe how to start your application. Very useful in PaaS platform which reads the package.json files.
+     * "test" is for runnig tests.
+
+     "scripts": {
+      "start": "node index.js",
+      "test": "mocha test",
+      "your-custom-script": "echo npm"
+    }
